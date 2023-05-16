@@ -41,9 +41,9 @@ class CompanyController extends Controller
            'address' => $address
         ],
         [
-            'name' => 'required',
-            'email' => 'required',
-            'address' => 'required'
+            'name' => 'required|max:25',
+            'qmail' => 'required|email|unique:users',
+            'address' => 'required',
         ]
     );
     if($validator->fails()){
@@ -53,8 +53,6 @@ class CompanyController extends Controller
         Company::create($request->post());
         return redirect()->route('companies.index')->with(['success', 'Company has been created successfully.']);
     }
-
-        
     }
 
     /**
@@ -79,8 +77,8 @@ class CompanyController extends Controller
     public function update(Request $request, Company $company)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
+            'name' => 'required|max:25',
+            'qmail' => 'required|email|unique:users',
             'address' => 'required',
         ]);
 
