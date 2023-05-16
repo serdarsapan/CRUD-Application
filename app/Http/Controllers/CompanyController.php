@@ -42,7 +42,7 @@ class CompanyController extends Controller
         ],
         [
             'name' => 'required|max:25',
-            'qmail' => 'required|email|unique:users',
+            'email' => 'required|email|unique:users',
             'address' => 'required',
         ]
     );
